@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# All Event related API's here....
+GET         /beacon/:beaconId                     controllers.BeaconController.getBeaconById(beaconId: String)
+POST        /beacon                               controllers.BeaconController.createBeacon
+GET         /beacon/:beaconId/user/:userId        controllers.BeaconController.getEventsForUser(beaconId: String, userId: String)
+GET         /beacons                              controllers.BeaconController.getEventsByBeacons()
+
+
+
+#GET         /location/all                        controllers.LocationController.getAll
+#GET         /location/:name                      controllers.LocationController.getByName(name: String)
+POST        /location                             controllers.LocationController.createLocation
+
+#GET         /category/all                        controllers.CategoryController.getAll
+#GET         /category/:name                      controllers.CategoryController.getByName(name: String)
+POST        /category                             controllers.CategoryController.createCategory
+GET         /category/:userId                     controllers.CategoryController.getCategoriesPage(userId: String)
+
+#GET         /user/:userName                      controllers.UserController.getUser(userName: String)
+POST        /user                                 controllers.UserController.createUser
+POST        /starred                              controllers.UserController.addEventToUser
+
+POST        /event/category                   controllers.EventController.getEventsByCategories
+POST        /event                            controllers.EventController.createEvent
+
+POST        /updateCategories                 controllers.CategoryController.updateCategories
+
+GET         /event/new/:adminId               controllers.EventController.createEventPage(adminId: String)
+GET         /events/:adminId                  controllers.EventController.getEventsByAdmin(adminId: String)
+GET         /recommendedEvents/:userId        controllers.EventController.getRecommendedEvents(userId: String)
+GET         /starredEvents/:userId            controllers.EventController.getStarredEvents(userId: String)
+GET         /event/:eventId/:userId           controllers.EventController.getSingleEventPage(userId: String, eventId: String)
+GET         /noEvents                         controllers.EventController.getNoLiveEventsPage()
+
+GET         /                                 controllers.EventController.testUI
+
+GET         /noBeacons                        controllers.BeaconController.noBeacons
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)
+GET         /webjars/*file                    controllers.WebJarAssets.at(file)

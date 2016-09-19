@@ -1,0 +1,27 @@
+@import java.util._
+
+@import models.database._
+@(events: List[Event])(deviceId: String)
+
+@main("Events List") {
+    <div class="row">
+    @for(event <- events) {
+        @*TODO: replace the href with the correct user id*@
+        <div class="col-xs-12 event">
+            <a href="/event/@event.getId()/@deviceId" class="event-link">
+                <div class="event-body">
+                    <div class="event-title">@event.getName</div>
+                    <div class="">
+                    @for(category <- event.getCategories) {
+                        <span class="label label-success">@category</span>
+                    }
+                    </div>
+                    <div class="event-description">@event.getDescription</div>
+                </div>
+            </a>
+        </div>
+    }
+    </div>
+}
+
+

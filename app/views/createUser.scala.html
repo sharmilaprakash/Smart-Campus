@@ -1,0 +1,44 @@
+@import java.util._
+
+@import helper._
+@import models.database._
+@(deviceId: String)(categories: List[Category])
+
+@main("Created Events") {
+    <div class="item">
+        @*<img src="@routes.Assets.versioned("images/createUser.jpg")" alt="">*@
+        <div class="container create-user-outer">
+            <div class="row create-user-form">
+                @*<h1>Register</h1>*@
+                <div class="text-center col-xs-12 create-user-inner">
+                    <p class="lead">Welcome to SmartCampus!</p>
+                    <p class="lead">Signup now!</p>
+                    @form(routes.UserController.createUser, 'class -> "form-horizontal", 'id -> "select2Form") {
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="userName" placeholder="Name" name="userName">
+                        </div>
+                        <div class="form-group">
+                            <select name="categories" class="form-control select2-select"
+                            multiple data-placeholder="Categories">
+                            @for(category <- categories) {
+                                <option value = @category.getName>@category.getName</option>
+                            }
+                            </select>
+                        </div>
+                        <input type="hidden" name="deviceId" value=@deviceId>
+                        <div class="form-group">
+                            <div class="col-xs-12"></div>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2-bootstrap.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.js"></script>
+    <script type="text/javascript">
+            $('select').select2();
+    </script>
+}

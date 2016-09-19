@@ -1,0 +1,184 @@
+.frame {
+    background: url("/assets/images/smartCampus.jpg") no-repeat  center center fixed #000;;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.frame .alpha {
+    padding: 50px 80px;
+    background: rgba(0,0,0,0.3);
+}
+
+.form {
+    margin: 0 auto;
+    width:250px;
+}
+
+.create-user-outer{
+    position: relative;
+    height: 100vh;
+}
+
+.create-user-inner{
+    position: absolute;
+    top: 40%;
+    padding: 50px;
+    border: solid 1px rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.create-event-outer{
+    position: relative;
+    height: 100vh;
+}
+
+.create-event-inner{
+    position: absolute;
+    top: 5vh;
+    padding: 50px;
+    border: solid 1px rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.create-event-form-entry {
+    margin-bottom: 10px !important;
+}
+
+.test-inner input{
+    margin-bottom: 10px;
+}
+
+
+body {
+    /*background: url("/assets/images/smartCampus.jpg") no-repeat  center center fixed #000;*/
+    /*background-image: url("/assets/images/smartCampus.jpg");
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #000;
+    */
+
+}
+
+.event:nth-of-type(odd) {
+    background-color: #ccc;
+}
+
+.event:hover {
+    background-color: red;
+}
+
+a.event-link {
+    color: #000;
+    text-decoration: none !important;
+}
+
+.event-body {
+    padding: 15px;
+}
+
+.event-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.event-loading {
+    text-align: center;
+    padding: 15px;
+}
+
+.event-single {
+    padding: 0;
+}
+
+.event-single-heading {
+    text-align: center;
+    padding: 20px 0;
+    background: #99ffdd;
+    color: #000000;
+}
+
+.event-single-title {
+    font-size: 30px;
+}
+
+.event-single-time {
+    font-size: 15px;
+}
+
+.event-single-body {
+    font-size: 14px;
+    text-align: justify;
+    padding: 20px;
+    color: #000000;
+}
+
+.event-single-body > * {
+    margin-bottom: 10px;
+}
+
+.event-single-star {
+    text-align: center;
+    padding: 50px;
+}
+
+.event-single-star-text {
+    border-radius: 4px;
+    display: inline-block;
+    padding: 5px 20%;
+}
+
+.event-single-star-text.unstarred {
+    border: solid 1px black;
+    background-color: white;
+    color: black;
+}
+
+.event-single-star-text.starred {
+    border: solid 1px white;
+    background-color: darkred;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.event-single a {
+    text-decoration: none;
+}
+
+.reload-events {
+    margin-top: 10px;
+}
+
+.create-user-form {
+
+}
+
+.categories {
+    margin-top: 10px;
+    border: 0px solid #fff;
+    padding: 1px;
+    border-radius: 4px;
+    width: 100% !important;
+}
+
+.strong {
+    font-weight: bold;
+}

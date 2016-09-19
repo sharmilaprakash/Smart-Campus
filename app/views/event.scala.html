@@ -1,0 +1,55 @@
+@import models.database._
+@(deviceId: String)(event: Event)(isStarred: Boolean)
+
+@main("Event") {
+  <div class="col-xs-12 event-single">
+    <div class="event-single-heading">
+      <div class="event-single-title">
+        @event.getName
+      </div>
+      <div class="event-single-time">
+        <div><i class="fa fa-calendar-check-o" aria-hidden="true"></i> @event.getStartTime - @event.getEndTime</div>
+      </div>
+    </div>
+    <div class="event-single-body">
+      <div class="event-single-description">
+        <div class="strong">Event Description:</div>
+        <div>@event.getDescription</div>
+      </div>
+      <div class="event-single-location">
+        <div class="strong">Event Location:</div>
+        <div>@event.getLocation</div>
+      </div>
+      <div class="event-single-link">
+        <div class="strong">External Link:</div>
+        <div><a href="@event.getExternalLink">@event.getExternalLink</a></div>
+      </div>
+      <div class="event-single-star">
+        <div class="event-single-star-text unstarred">I Like this event <i class="fa fa-heart-o" aria-hidden="true"></i></div>
+        <div class="event-single-star-text starred hidden">Loved it <i class="fa fa-heart" aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      @if(isStarred){
+      $(".event-single-star-text.unstarred").addClass("hidden");
+      $(".event-single-star-text.starred").removeClass("hidden");
+      }
+      $(".event-single-star-text.unstarred").on('click',function(){
+        $.post( "/starred", {'eventId': @event.getId, 'deviceId': "@deviceId"})
+          .done(function(){
+            $(".event-single-star-text.unstarred").addClass("hidden");
+            $(".event-single-star-text.starred").removeClass("hidden");
+          })
+          .fail(function(){
+            alert("Some error at our errors. Please try again later");
+          });
+      });
+    });
+
+  </script>
+}
+
+

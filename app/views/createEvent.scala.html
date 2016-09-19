@@ -1,0 +1,73 @@
+@import java.util._
+
+@import helper._
+@import models.database._
+@(locations: List[Location])(categories: List[Category])(deviceId: String)
+
+@main("Create Event") {
+    <div class="frame">
+        <div class="container create-event-outer">
+            <div class="row">
+                <div class="col-xs-12 create-event-inner">
+                    @form(routes.EventController.createEvent, 'class -> "form-horizontal create-event-form", 'id -> "select2Form") {
+                        <input type="text" placeholder="Event Name" class="form-control create-event-form-entry" name="name">
+                        <input type="text" placeholder="Location" class="form-control create-event-form-entry" name="location">
+                        <div class='input-group date create-event-form-entry' id='event-start-date'>
+                            <input type='text' placeholder="Start time mm/dd/yyyy hh:mm" class="form-control" name="startTime"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <div class='input-group date create-event-form-entry' id='event-end-date'>
+                            <input type='text' placeholder="End time mm/dd/yyyy hh:mm" class="form-control" name="endTime"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <input type="text" placeholder="External link" class="form-control create-event-form-entry" name="externalLink">
+                        <textarea cols="30" rows="10" placeholder="Description" class="form-control create-event-form-entry" name="description"></textarea>
+                        <select name="beaconLocations" class="form-control select2-select create-event-form-entry"
+                        multiple data-placeholder="Choose beacon locations">
+                        @for(location <- locations) {
+                            <option value=@location.getName>@location.getName</option>
+                        }
+                        </select>
+                        <select name="categories" class="form-control select2-select create-event-form-entry"
+                        multiple data-placeholder="Choose Category">
+                        @for(category <- categories) {
+                            <option value=@category.getName>@category.getName</option>
+                        }
+                        </select>
+                        <input type="hidden" name="isActive" value="True">
+                        <input type="hidden" name="createdBy" value=@deviceId>
+                        <button type="submit" class="btn btn-primary btn-lg create-event-form-entry">Submit</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('select').select2();
+            $('#event-start-date').datetimepicker({
+                startDate: moment().format("MM/DD/YYYY HH:mm"),
+                format: 'mm/dd/yyyy hh:ii'
+            });
+            $('#event-end-date').datetimepicker({
+                startDate: moment().format("MM/DD/YYYY HH:mm"),
+                format: 'mm/dd/yyyy hh:ii'
+            });
+            $("#event-start-date").on("change.dp", function (e) {
+                $this = $(this);
+                $this.data("datetimepicker").setEndDate();
+                $('#event-end-date').data("datetimepicker").setStartDate($this.data("date"));
+            });
+            $("#event-end-date").on("change.dp", function (e) {
+                $this = $(this);
+                $('#event-start-date').data("datetimepicker").setEndDate($this.data("date"));
+            });
+        });
+    </script>
+}
+
